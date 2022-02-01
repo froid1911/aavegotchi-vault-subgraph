@@ -1,0 +1,16 @@
+{
+  "name": "aavegotchi-vault-subgraph",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ froid1911/aavegotchi-vault-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ froid1911/aavegotchi-vault-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ froid1911/aavegotchi-vault-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 froid1911/aavegotchi-vault-subgraph"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.21.1",
+    "@graphprotocol/graph-ts": "0.20.0"
+  }
+}
