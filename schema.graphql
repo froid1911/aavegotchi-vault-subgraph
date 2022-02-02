@@ -6,5 +6,10 @@ type Vault @entity {
 type Aavegotchi @entity {
   id: ID!
   vault: Vault
-  owner: Bytes
+  owner: Owner
+}
+
+type Owner @entity {
+  id: ID!
+  gotchis: [Aavegotchi!]! @derivedFrom(field: "owner")
 }

@@ -1,5 +1,5 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts";
-import { Aavegotchi, Vault } from "../generated/schema";
+import { Aavegotchi, Owner, Vault } from "../generated/schema";
 
 export function getOrCreateVault(address: Address): Vault {
     let vault = Vault.load(address.toHexString());
@@ -15,4 +15,12 @@ export function getOrCreateAavegotchi(id: BigInt): Aavegotchi {
         gotchi = new Aavegotchi(id.toString());
     }
     return gotchi;
+}
+
+export function getOrCreateOwner(address: Address): Owner {
+    let owner = Owner.load(address.toHexString());
+    if(!owner) {
+        owner = new Owner(address.toHexString());
+    }
+    return owner;
 }
