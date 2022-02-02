@@ -1,6 +1,9 @@
-type ExampleEntity @entity {
+type Vault @entity {
   id: ID!
-  count: BigInt!
-  _owner: Bytes! # address
-  _operator: Bytes! # address
+  gotchis: [Aavegotchi!]! @derivedFrom(field: "vault")
+}
+
+type Aavegotchi @entity {
+  id: ID!
+  vault: Vault
 }
