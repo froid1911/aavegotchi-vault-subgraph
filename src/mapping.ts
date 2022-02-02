@@ -13,6 +13,7 @@ export function handleTransfer(event: Transfer): void {
     gotchi.vault = vault.id;
     gotchi.owner = event.transaction.from;
     gotchi.save();
+    vault.save();
   } 
   // withdraw
   else if(event.params._from.equals(VAULT_ADDRESS)) {
