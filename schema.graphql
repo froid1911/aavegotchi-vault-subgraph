@@ -1,6 +1,7 @@
 type Vault @entity {
   id: ID!
   gotchis: [Aavegotchi!]! @derivedFrom(field: "vault")
+  numGotchis: BigInt!
 }
 
 type Aavegotchi @entity {
@@ -12,4 +13,5 @@ type Aavegotchi @entity {
 type Owner @entity {
   id: ID!
   gotchis: [Aavegotchi!]! @derivedFrom(field: "owner")
+  numGotchis: BigInt!
 }

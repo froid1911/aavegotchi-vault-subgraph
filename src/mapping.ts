@@ -14,12 +14,29 @@ export function handleTransfer(event: Transfer): void {
     gotchi.vault = vault.id;
     gotchi.owner = owner.id;
     gotchi.save();
+
+    vault.numGotchis = vault.numGotchis.plus(BigInt.fromI32(1));
     vault.save();
+
+    owner.numGotchis = owner.numGotchis.plus(BigInt.fromI32(1));
     owner.save();
   } 
   // withdraw
   else if(event.params._from.equals(VAULT_ADDRESS)) {
+    let vault = getOrCreateVault(event.params._to);
+    vault.numGotchis = vault.numGotchis.plus(BigInt.fromI32(1));
+    vault.save();
+
     store.remove("Aavegotchi", event.params._tokenId.toString())
+    
+    let owner = getOrCreateOwner(event.params._from);
+    owner.numGotchis = owner.numGotchis.minus(BigInt.fromI32(1));
+    if(owner.numGotchis.equals(BigInt.fromI32(0))) {
+      store.remove("Owner", owner.id)
+    } else {
+      owner.save();
+    }
+    
   }
 }
 
