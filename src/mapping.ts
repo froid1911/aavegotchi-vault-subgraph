@@ -23,13 +23,13 @@ export function handleTransfer(event: Transfer): void {
   } 
   // withdraw
   else if(event.params._from.equals(VAULT_ADDRESS)) {
-    let vault = getOrCreateVault(event.params._to);
+    let vault = getOrCreateVault(event.params._from);
     vault.numGotchis = vault.numGotchis.plus(BigInt.fromI32(1));
     vault.save();
 
     store.remove("Aavegotchi", event.params._tokenId.toString())
     
-    let owner = getOrCreateOwner(event.params._from);
+    let owner = getOrCreateOwner(event.params._to);
     owner.numGotchis = owner.numGotchis.minus(BigInt.fromI32(1));
     if(owner.numGotchis.equals(BigInt.fromI32(0))) {
       store.remove("Owner", owner.id)
